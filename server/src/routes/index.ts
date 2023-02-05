@@ -1,8 +1,8 @@
 import { Router } from "express";
-import boxesRouter from "@/routes";
+import boxes from "@/routes/boxes";
 
 const router = Router();
 
-router.use("/boxes", boxesRouter);
+router.use("/boxes", boxes);
 
 export default router;
