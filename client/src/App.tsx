@@ -1,19 +1,18 @@
 import { useState } from "react";
-import { Box, Button, Container } from "@mui/material";
+import { Box, Button, Container, Typography } from "@mui/material";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <Box>
       <Container>
-        <Button
-          onClick={() => {
-            setCount(count + 1);
-          }}
-        >
-          Count: {count}
-        </Button>
+        <Typography variant="h4">
+          Two boxes in red and blue. <br />
+          Boxes were crafted by previous players. <br />
+          Each box will take you to a link. <br />
+          You may pick one to visit. <br />
+          The other will remain a mystery forever. <br />
+          Chose carefully...
+        </Typography>
       </Container>
     </Box>
   );
