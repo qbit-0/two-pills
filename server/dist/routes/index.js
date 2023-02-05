@@ -4,7 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
-const boxes_js_1 = __importDefault(require("./boxes.js"));
+const routes_1 = __importDefault(require("@/routes"));
 const router = (0, express_1.Router)();
-router.use("/boxes", boxes_js_1.default);
+router.use("/boxes", routes_1.default);
 exports.default = router;

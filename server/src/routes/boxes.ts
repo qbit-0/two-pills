@@ -1,9 +1,8 @@
 import { Router } from "express";
+import { getBoxes } from "@/controllers/boxes";
 
 const router = Router();
 
-router.get("/", (req, res, next) => {
-  res.json({ box1: {}, box2: {} });
-});
+router.get("/", getBoxes);
 
 export default router;
