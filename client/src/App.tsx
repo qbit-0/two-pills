@@ -5,7 +5,7 @@ import './App.css'
 function App() {
   const [res, setRes] = useState(JSON);
   useEffect(() => {
-    const res = fetch("/api/boxes", {
+    const res = fetch("/api/boxes/link/1", {
       method: 'Get',
       headers: {
         'Content-type': 'application/json'
