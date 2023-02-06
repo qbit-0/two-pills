@@ -25,7 +25,7 @@ jobs:
         run: cd server && npm run build
 
       - name: List Built Files
-        run: cd server/dist && ls
+        run: cd server/dist/src && ls
 
   deploy:
     needs: [build]
@@ -36,7 +36,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Generate deployment package
-        run: cd server && zip -r ../deploy-dev-backend.zip . -x '*.git*'
+        run: cd server && zip -r ../deploy-dev-backend.zip .
 
       - name: Get time
         run: |
