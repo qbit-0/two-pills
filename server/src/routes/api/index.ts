@@ -1,8 +1,8 @@
 import { Router } from "express";
-import { getBoxes } from "@/controllers/boxes";
+import boxes from "@/routes/api/boxes";
 
 const router = Router();
 
-router.get("/", getBoxes);
+router.use("/boxes", boxes);
 
 export default router;
