@@ -2,7 +2,7 @@
   "name": "server",
   "version": "1.0.0",
   "description": "",
-  "main": ".",
+  "main": "dist/index.js",
   "scripts": {
     "build": "npx tsc",
     "start": "node .",
@@ -26,6 +26,6 @@
     "module-alias": "^2.2.2"
   },
   "_moduleAliases": {
-    "@": "dist"
+    "@": "dist/src"
   }
 }
