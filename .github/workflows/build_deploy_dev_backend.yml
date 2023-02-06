@@ -6,7 +6,7 @@ on:
     branches: [dev]
 
 jobs:
-  build:
+  build and deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -23,14 +23,6 @@ jobs:
 
       - name: Build
         run: cd server && npm run build
-
-  deploy:
-    needs: [build]
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout source code
-        uses: actions/checkout@v3
 
       - name: Generate deployment package
         run: cd server && zip -r ../deploy-dev-backend.zip . -x "*.git*"
