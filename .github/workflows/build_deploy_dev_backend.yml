@@ -20,14 +20,11 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v3
 
-      - name: Change Directory
-        run: cd server
-
       - name: Install Dependencies
-        run: npm install
+        run: cd server && npm install
 
       - name: Build
-        run: npm run build
+        run: cd server && npm run build
 
   deploy:
     needs: [build]
