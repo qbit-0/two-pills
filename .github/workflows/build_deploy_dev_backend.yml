@@ -33,7 +33,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Generate deployment package
-        run: cd server && zip -r deploy-dev-backend.zip . -x '*.git*'
+        run: zip -r deploy-dev-backend.zip ./server -x '*.git*'
 
       - name: Get time
         run: |
@@ -48,4 +48,4 @@ jobs:
           environment_name: Twoboxes-env-backend
           version_label: ${{ env.TIME }}
           region: "us-east-2"
-          deployment_package: server/deploy-dev-backend.zip
+          deployment_package: deploy-dev-backend.zip
