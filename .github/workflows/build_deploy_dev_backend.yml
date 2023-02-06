@@ -27,7 +27,7 @@ jobs:
       - name: Generate deployment package
         run: cd server && zip -r ../deploy-dev-backend.zip . -x "*.git*"
 
-      - name: Get time
+      - name: Get timestamp
         run: |
           echo "TIME=$(date +"%s")" >> $GITHUB_ENV
 
