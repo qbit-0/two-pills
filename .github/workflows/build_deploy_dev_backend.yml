@@ -24,6 +24,9 @@ jobs:
       - name: Build
         run: cd server && npm run build
 
+      - name: List Built Files
+        run: cd server/dist && ls
+
   deploy:
     needs: [build]
     runs-on: ubuntu-latest
