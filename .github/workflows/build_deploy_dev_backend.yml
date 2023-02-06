@@ -48,4 +48,4 @@ jobs:
           environment_name: Twoboxes-env-backend
           version_label: ${{ env.TIME }}
           region: "us-east-2"
-          deployment_package: deploy-dev-backend.zip
+          deployment_package: server/deploy-dev-backend.zip
