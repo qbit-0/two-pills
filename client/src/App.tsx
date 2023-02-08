@@ -1,6 +1,5 @@
-import { useState, useEffect } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import TestComponent from "@/components/TestComponent";
+import { useEffect, useState } from "react";
 
 function App() {
   const [res, setRes] = useState(JSON);
@@ -12,23 +11,20 @@ function App() {
     //   },
     const data = {
       link: "a link",
-      label: "a label"
-    }
+      label: "a label",
+    };
     const res = fetch("/api/boxes/1", {
-      method: 'PUT',
+      method: "PUT",
       headers: {
-        'Content-type': 'application/json'
+        "Content-type": "application/json",
       },
-      body: JSON.stringify(data)
-    }).then((res) => res.json())
-    .then((data)=> setRes(data));
-  },[])
-  
-  return (
-    <div className="App">
-      {JSON.stringify(res)}
-    </div>
-  )
+      body: JSON.stringify(data),
+    })
+      .then((res) => res.json())
+      .then((data) => setRes(data));
+  }, []);
+
+  return <div className="App">{JSON.stringify(res)}</div>;
 }
 
-export default App
+export default App;
