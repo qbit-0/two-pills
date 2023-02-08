@@ -1,0 +1,43 @@
+name: Build and Deploy Dev Backend
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [dev]
+
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v3
+        with:
+          ref: dev
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+
+      - name: Install Dependencies
+        run: cd server && npm install
+
+      - name: Build
+        run: cd server && npm run build
+
+      - name: Generate deployment package
+        run: cd server && zip -r ../deploy-dev-backend.zip . -x "*.git*"
+
+      - name: Get timestamp
+        run: |
+          echo "TIME=$(date +"%s")" >> $GITHUB_ENV
+
+      - name: Deploy to EB
+        uses: einaregilsson/beanstalk-deploy@v21
+        with:
+          aws_access_key: ${{ secrets.AWS_ACCESS_KEY }}
+          aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          application_name: two-boxes
+          environment_name: Twoboxes-env-backend
+          version_label: ${{ env.TIME }}
+          region: "us-east-2"
+          deployment_package: deploy-dev-backend.zip
