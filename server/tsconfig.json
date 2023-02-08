@@ -8,11 +8,11 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
-    "skipLibCheck": true,
-    "baseUrl": "src",
-    "paths": {
-      "@/*": ["*"]
-    }
+    "skipLibCheck": true
   },
-  "exclude": ["client", "dist", "node_modules"]
+  "exclude": [
+    "client",
+    "dist",
+    "node_modules"
+  ]
 }
