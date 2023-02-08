@@ -1,5 +1,6 @@
-import { Box, Container, Typography } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useState, useEffect } from 'react'
+import reactLogo from './assets/react.svg'
+import './App.css'
 
 function App() {
   const [res, setRes] = useState(JSON);
@@ -11,32 +12,23 @@ function App() {
     //   },
     const data = {
       link: "a link",
-      label: "a label",
-    };
+      label: "a label"
+    }
     const res = fetch("/api/boxes/1", {
-      method: "PUT",
+      method: 'PUT',
       headers: {
-        "Content-type": "application/json",
+        'Content-type': 'application/json'
       },
-      body: JSON.stringify(data),
-    })
-      .then((res) => res.json())
-      .then((data) => setRes(data));
-  }, []);
-
+      body: JSON.stringify(data)
+    }).then((res) => res.json())
+    .then((data)=> setRes(data));
+  },[])
+  
   return (
-    <Box>
-      <Container>
-        <Typography variant="h4">
-          Two boxes in red and blue. <br />
-          Boxes were crafted by previous players. <br />
-          Each box will take you to a link. <br />
-          You may pick one to visit. <br />
-          The other will remain a mystery forever. <br />
-          Chose carefully...
-        </Typography>
-      </Container>
-    </Box>
-  );
+    <div className="App">
+      {JSON.stringify(res)}
+    </div>
+  )
 }
-export default App;
+
+export default App
