@@ -1,17 +1,16 @@
 import { useState, useEffect } from 'react'
 import reactLogo from './assets/react.svg'
 import './App.css'
+import useLocalStorage from 'use-local-storage'
 
 function App() {
   const [res, setRes] = useState(JSON);
+  const defaultDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const [theme, setTheme] = useLocalStorage('theme', defaultDark ? 'dark' : 'light');
   useEffect(() => {
-    // const res = fetch("/api/boxes/link/1", {
-    //   method: 'Get',
-    //   headers: {
-    //     'Content-type': 'application/json'
-    //   },
+
     const data = {
-      link: "a link",
+      link: "http://www.google.com",
       label: "a label"
     }
     const res = fetch("/api/boxes/1", {
@@ -23,9 +22,14 @@ function App() {
     }).then((res) => res.json())
     .then((data)=> setRes(data));
   },[])
-  
+  const toggleTheme = () => {
+    setTheme(theme == 'light' ? 'dark' : 'light');
+  }
   return (
-    <div className="App">
+    <div className="App" data-theme={theme}>
+      <button onClick={toggleTheme}>
+        switch to {theme == 'light' ? 'dark' : 'light'}
+      </button>
       {JSON.stringify(res)}
     </div>
   )
