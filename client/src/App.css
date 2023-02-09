@@ -22,3 +22,10 @@
   float: right;
   transition: all 0.5s;
 }
+
+.App {
+  color: var(--text-primary);
+  background-color: var(--background);
+  height: calc(100vh);
+  transition: all 0.5s;
+}
