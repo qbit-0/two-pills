@@ -18,7 +18,7 @@
   border: 0;
   position: absolute;
   right: 30px;
-  top: 30px;
+  top: 20px;
   float: right;
   transition: all 0.5s;
 }
@@ -28,4 +28,9 @@
   background-color: var(--background);
   height: calc(100vh);
   transition: all 0.5s;
+}
+
+.body-instruction{
+  text-align: center;
+  font-size: x-large;
 }

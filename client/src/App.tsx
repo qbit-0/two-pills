@@ -29,6 +29,7 @@ function App() {
   return (
     <div className="App" data-theme={theme}>
       <Navbar setTheme={setTheme} theme={theme} />
+      <Body />
       {JSON.stringify(res)}
     </div>
   );
@@ -48,4 +49,17 @@ const Navbar = ({theme, setTheme}: any) => {
     </nav>
   );
 };
+
+const Body = () => {
+  return(
+    <h1 className = "body-instruction">
+      Two boxes in red and blue.<br/>
+      Boxes were crafted by previous players.<br/>
+      Each box will take you to a link.<br/>
+      You may pick one to visit.<br/>
+      The other will remain a mystery.<br/>
+      Chose carefully...
+    </h1>
+  )
+}
 export default App;
