@@ -2,6 +2,7 @@ body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-family: "Inter", Arial, Helvetica, sans-serif;
 }
 
 :root {
@@ -11,7 +12,7 @@ body {
   --accent: #ff8e3c;
 }
 
-[data-theme='dark'] {
+[data-theme="dark"] {
   --background: #0f0e17;
   --text-primary: #fffffe;
   --text-secondary: #a7a9be;
@@ -21,16 +22,6 @@ body {
 .App {
   color: var(--text-primary);
   background-color: var(--background);
-  font-size: large;
-  font-weight: bold;
-  padding: 20px;
-  height: calc(100vh - 40px);
-  transition: all .5s;
-}
-button {
-  color: var(--background);
-  background-color: var(--text-primary);
-  border: 2px var(--text-primary) solid;
-  float: right;
-  transition: all .5s;
+  height: calc(100vh - 70px);
+  transition: all 0.5s;
 }

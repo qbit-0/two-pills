@@ -1,0 +1,24 @@
+#nav {
+  text-align: center;
+}
+
+.nav-title {
+  color: var(--text-primary);
+  font-size: xxx-large;
+  font-weight: bold;
+  transition: all 0.5s;
+  padding: 20px;
+}
+
+.nav-color-toggle {
+  color: var(--text-primary);
+  cursor: pointer;
+  background-color: transparent;
+  font-size: xx-large;
+  border: 0;
+  position: absolute;
+  right: 30px;
+  top: 30px;
+  float: right;
+  transition: all 0.5s;
+}
