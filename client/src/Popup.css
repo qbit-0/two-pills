@@ -4,8 +4,8 @@
     inset-inline-end: 0px;
     width: fit-content;
     height: fit-content;
-    background-color: canvas;
-    color: canvastext;
+    background-color: var(--background-secondary);
+    color: var(--text-primar);
     margin: auto;
     border-width: initial;
     border-style: solid;
