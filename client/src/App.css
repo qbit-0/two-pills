@@ -28,9 +28,31 @@
   background-color: var(--background);
   height: calc(100vh);
   transition: all 0.5s;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
 .body-instruction{
   text-align: center;
   font-size: x-large;
+}
+
+.boxes-wrapper {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.box {
+  height: 300px;
+  width: 300px;
+}
+
+.blue {
+  background-color: rgb(20, 70, 163);
+}
+
+.red {
+  background-color: rgb(155, 22, 29);
 }
