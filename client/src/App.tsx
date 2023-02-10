@@ -48,7 +48,7 @@ const Body = () => {
     setBoxIndex(id);
   };
   return (
-    <body id="body">
+    <div id="body">
       {popupOpen && <Popup setPopupOpen={setPopupOpen} id={boxIndex} />}
       <h1 className="body-instruction">
         Two boxes in
@@ -82,7 +82,7 @@ const Body = () => {
           handleBoxClick={handleBoxClick}
         />
       </div>
-    </body>
+    </div>
   );
 };
 
