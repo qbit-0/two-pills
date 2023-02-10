@@ -9,21 +9,6 @@ function App() {
     "theme",
     defaultDark ? "dark" : "light"
   );
-  useEffect(() => {
-    const data = {
-      link: "http://www.google.com",
-      label: "a label",
-    };
-    const res = fetch("/api/boxes/1", {
-      method: "PUT",
-      headers: {
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
-      .then((res) => res.json())
-      .then((data) => setRes(data));
-  }, []);
   return (
     <div className="App" data-theme={theme}>
       <Navbar setTheme={setTheme} theme={theme} />
@@ -49,10 +34,20 @@ const Navbar = ({ theme, setTheme }: any) => {
 };
 
 const Body = () => {
+  const [ labels, setLabels ] = useState([]);
+  useEffect(() => {
+    fetch("/api/boxes/labels", {
+      method: "GET",
+    })
+      .then((res) => res.json())
+      .then((data) => setLabels(data));
+  }, []);
   return (
     <body id="body">
       <h1 className="body-instruction">
-        Two boxes in red and blue.
+        Two boxes in 
+        <span className="text-red"> red</span> and{" "}
+        <span className="text-blue">blue</span>.
         <br />
         Boxes were crafted by previous players.
         <br />
@@ -65,17 +60,23 @@ const Body = () => {
         Chose carefully...
       </h1>
       <div className="boxes-wrapper">
-        <Box color={"blue"} />
-        <div className="box">or</div>
-        <Box color={"red"} />
+        <Box label={labels[0]} color={"blue"} />
+        <div className="box-center-text">
+          <div>OR</div>
+        </div>
+        <Box label={labels[1]} color={"red"} />
       </div>
     </body>
   );
 };
-type boxColor = {
+
+type boxProps = {
   color: "red" | "blue";
+  label: string;
 };
-const Box = ({ color }: boxColor) => {
-  return <div className={`box ${color}`}></div>;
+
+const Box = ({ color, label }: boxProps) => {
+  return <button className={`box ${color}`}>{label}</button>;
 };
+
 export default App;

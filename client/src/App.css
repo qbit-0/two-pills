@@ -44,15 +44,43 @@
   align-items: center;
 }
 
-.box {
+.box-center-text, .box {
   height: 300px;
   width: 300px;
 }
 
+.box-center-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 500%;
+}
+
+.box {
+  font-size: x-large;
+  border: 0;
+  color: #fffffe;
+  cursor: pointer;
+  transition: all 0.5s;
+}
+
+.box:hover {
+  scale: 1.1;
+}
+
 .blue {
   background-color: rgb(20, 70, 163);
+
 }
 
 .red {
   background-color: rgb(155, 22, 29);
+}
+
+.text-red {
+  color: rgb(199, 48, 48);
+}
+
+.text-blue {
+  color: rgb(23, 104, 255);
 }
