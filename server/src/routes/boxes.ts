@@ -21,10 +21,15 @@ router.put("/:id", async function (req, res) {
   const id = Number(req.params.id);
   const label = req.body.label;
   const link = req.body.link;
+  if (!link) {
+    return res.status(400).send({ error: "The link is empty" });
+  } else if (!label) {
+    return res.status(400).send({ error: "The label is empty" });
+  }
   if (id >= boxes.length) {
     return res.status(400).send({ error: "The index is out of scope" });
   } else if (!link.match(regex)) {
-    return res.status(400).send({ error: "The link is not valid" });
+    return res.status(400).send({ error: "The link is not valid, Please enter a valid link" });
   }
   res.status(200).json(boxes[id].link);
   boxes[id].label = label;

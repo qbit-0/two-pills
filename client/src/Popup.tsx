@@ -5,10 +5,10 @@ type PopupProps = {
   setPopupOpen: any;
   id: number | undefined;
 };
-
+/* input validation is needed */
 const Popup = ({ setPopupOpen, id }: PopupProps) => {
-  const [ link, setLink ] = useState<string>();
-  const [ label, setLabel ] = useState<string>()
+  const [link, setLink] = useState<string>();
+  const [label, setLabel] = useState<string>();
 
   const handleSubmit = () => {
     setPopupOpen(false);
@@ -25,15 +25,24 @@ const Popup = ({ setPopupOpen, id }: PopupProps) => {
       .then((res) => res.json())
       .then((data) => console.log(data));
   };
+
   const handleCancel = () => {
     setPopupOpen(false);
+  };
+
+  const handleInputChange = (e: any) => {
+    if (e.target.id == "label") {
+      setLabel(e.target.value);
+    } else if (e.target.id == "link") {
+      setLink(e.target.value);
+    }
   };
 
   return (
     <div className="popup">
       <h1>Provide a label and a link for the next person</h1>
       <h2>You will get the current link after you submit the form</h2>
-      <form className="dialog">
+      <form onChange={handleInputChange} className="dialog">
         <label>Label: </label>
         <input
           type="text"
