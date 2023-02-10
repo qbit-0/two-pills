@@ -5,7 +5,9 @@ type PopupProps = {
   setPopupOpen: any;
   id: number | undefined;
 };
-/* input validation is needed */
+/* input validation is needed 
+  handle empty input
+  invalid input using regex*/
 const Popup = ({ setPopupOpen, id }: PopupProps) => {
   const [link, setLink] = useState<string>();
   const [label, setLabel] = useState<string>();
@@ -23,6 +25,7 @@ const Popup = ({ setPopupOpen, id }: PopupProps) => {
       }),
     })
       .then((res) => res.json())
+      // show this link to the user with animation
       .then((data) => console.log(data));
   };
 
