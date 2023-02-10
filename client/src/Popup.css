@@ -1,0 +1,15 @@
+  .popup {
+    position: absolute;
+    inset-inline-start: 0px;
+    inset-inline-end: 0px;
+    width: fit-content;
+    height: fit-content;
+    background-color: canvas;
+    color: canvastext;
+    margin: auto;
+    border-width: initial;
+    border-style: solid;
+    border-color: initial;
+    border-image: initial;
+    padding: 1em;
+}
