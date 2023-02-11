@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import "@/App.css";
 import useLocalStorage from "use-local-storage";
-import Popup from "@/Popup";
+import Popup from "@/components/Popup";
 import Box from "@/components/Box";
 import Navbar from "@/components/NavBar";
 function App() {
