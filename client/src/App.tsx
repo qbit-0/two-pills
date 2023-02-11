@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import "@/App.css";
 import useLocalStorage from "use-local-storage";
 import Popup from "@/Popup";
+import Box from "@/components/Box";
+import Navbar from "@/components/NavBar";
 function App() {
   const defaultDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
   const [theme, setTheme] = useLocalStorage(
@@ -15,20 +17,6 @@ function App() {
     </div>
   );
 }
-
-const Navbar = ({ theme, setTheme }: any) => {
-  const toggleTheme = () => {
-    setTheme(theme == "light" ? "dark" : "light");
-  };
-  return (
-    <nav id="nav">
-      <div className="nav-title">Two Boxes</div>
-      <button className="nav-color-toggle" onClick={toggleTheme}>
-        ☀
-      </button>
-    </nav>
-  );
-};
 
 const Body = () => {
   const [labels, setLabels] = useState([]);
@@ -82,26 +70,6 @@ const Body = () => {
         />
       </div>
     </div>
-  );
-};
-
-type boxProps = {
-  id: number;
-  color: "red" | "blue";
-  label: string;
-  handleBoxClick: any;
-};
-
-const Box = ({ id, color, label, handleBoxClick }: boxProps) => {
-  return (
-    <button
-      className={`box ${color}`}
-      onClick={() => {
-        handleBoxClick(id);
-      }}
-    >
-      {label}
-    </button>
   );
 };
 
