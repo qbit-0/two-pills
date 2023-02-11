@@ -19,7 +19,6 @@ function App() {
 const Navbar = ({ theme, setTheme }: any) => {
   const toggleTheme = () => {
     setTheme(theme == "light" ? "dark" : "light");
-    console.log(theme);
   };
   return (
     <nav id="nav">
