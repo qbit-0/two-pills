@@ -42,27 +42,32 @@ const Popup = ({ setPopupOpen, id }: PopupProps) => {
   };
 
   return (
-    <div className="popup">
-      <h1>Provide a label and a link for the next person</h1>
-      <h2>You will get the current link after you submit the form</h2>
-      <form onChange={handleInputChange} className="dialog">
-        <label>Label: </label>
-        <input
-          type="text"
-          name="label"
-          id="label"
-          placeholder="My favorite search engine"
-        />
-        <label>Link: </label>
-        <input
-          type="text"
-          name="link"
-          id="link"
-          placeholder="https://www.google.com/"
-        />
-        <button onClick={handleSubmit}>Submit</button>
-        <button onClick={handleCancel}>Cancel</button>
-      </form>
+    <div>
+      <div className="popup-background" />
+      <div className="popup">
+        <h1>Please submit the form to get the previous link</h1>
+        <form onChange={handleInputChange} className="dialog">
+          <label>Label: </label>
+          <input
+            type="text"
+            name="label"
+            id="label"
+            placeholder="My favorite search engine"
+            required
+          />
+          <label>Link: </label>
+          <input
+            type="text"
+            name="link"
+            id="link"
+            placeholder="https://www.google.com/"
+            pattern="[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)"
+            required
+          />
+          <button onSubmit={handleSubmit}>Submit</button>
+          <button onClick={handleCancel}>Cancel</button>
+        </form>
+      </div>
     </div>
   );
 };
