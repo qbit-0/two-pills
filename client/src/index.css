@@ -1,0 +1,24 @@
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: "Inter", Arial, Helvetica, sans-serif;
+}
+
+:root {
+  --background: #eff0f3;
+  --background-secondary: white;
+  --text-primary: #0d0d0d;
+  --text-secondary: #2a2a2a;
+  --accent: #ff8e3c;
+  --toggle-text: "Dark Mode";
+}
+
+[data-theme="dark"] {
+  --background: #0f0e17;
+  --background-secondary: #1f1e27;
+  --text-primary: #fffffe;
+  --text-secondary: #a7a9be;
+  --accent: #ff8906;
+  --toggle-text: "Light Mode";
+}
