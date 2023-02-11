@@ -1,4 +1,4 @@
-name: Build and Deploy Dev Backend
+name: Build and Deploy Backend Dev
 
 on:
   workflow_dispatch:
@@ -25,7 +25,7 @@ jobs:
         run: cd server && npm run build
 
       - name: Generate deployment package
-        run: cd server && zip -r ../deploy-dev-backend.zip . -x "*.git*"
+        run: cd server && zip -r ../deploy-backend-dev.zip . -x "*.git*"
 
       - name: Get timestamp
         run: |
@@ -37,7 +37,7 @@ jobs:
           aws_access_key: ${{ secrets.AWS_ACCESS_KEY }}
           aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           application_name: two-boxes
-          environment_name: Twoboxes-env-backend
+          environment_name: Twoboxes-env-backend-dev
           version_label: ${{ env.TIME }}
-          region: "us-east-2"
-          deployment_package: deploy-dev-backend.zip
+          region: 'us-east-2'
+          deployment_package: deploy-backend-dev.zip
