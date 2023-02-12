@@ -1,5 +1,5 @@
 import Pill from "@/components/Pill";
-import { Box, Container, Typography } from "@mui/material";
+import { Box, Container, Divider, Typography } from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
 
 const Main = () => {
@@ -12,21 +12,19 @@ const Main = () => {
       pb={6}
     >
       <Container>
-        <Grid2 container rowSpacing={8} columnSpacing={1}>
+        <Grid2 container rowSpacing={8} columnSpacing={4}>
           <Grid2 xs={12}>
-            <Typography variant="h2" textAlign="center">
-              Make. Your. Decision.
+            <Typography variant="h2" textAlign="center" fontWeight="bold">
+              MAKE. YOUR. DECISION.
             </Typography>
           </Grid2>
-          <Grid2 xs={5}>
+          <Grid2 xs>
             <Pill pillId="red" />
           </Grid2>
-          <Grid2 xs={2}>
-            <Typography variant="h3" textAlign="center">
-              Or
-            </Typography>
-          </Grid2>
-          <Grid2 xs={5}>
+          <Divider orientation="vertical" flexItem>
+            <Typography variant="h3">Or</Typography>
+          </Divider>
+          <Grid2 xs>
             <Pill pillId="blue" />
           </Grid2>
         </Grid2>
