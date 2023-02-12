@@ -1,4 +1,3 @@
-import "@/Popup.css";
 import { useState } from "react";
 
 type PopupProps = {
