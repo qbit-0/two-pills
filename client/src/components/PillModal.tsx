@@ -23,8 +23,8 @@ const style = {
 type Values = { link: string; label: string };
 const initialValues: Values = { link: "", label: "" };
 const pillSchema = Yup.object().shape({
-  link: Yup.string().required("Required"),
-  label: Yup.string().required("Required"),
+  link: Yup.string(),
+  label: Yup.string(),
 });
 
 type Props = {
@@ -36,6 +36,8 @@ type Props = {
 
 const PillModal: FC<Props> = ({ open, onClose, pillId, pillLabel }) => {
   const handleSubmit = () => {};
+
+  const pillColor = pillId === "red" ? "primary" : "secondary";
 
   const pillTitle = pillId === "red" ? "The Red Pill" : "The Blue Pill";
 
@@ -49,10 +51,10 @@ const PillModal: FC<Props> = ({ open, onClose, pillId, pillLabel }) => {
         >
           <Card>
             <CardContent>
-              <Typography variant="h5" color="grey.700">
+              <Typography variant="h5" color={pillColor}>
                 {pillTitle}
               </Typography>
-              <Typography variant="h3" gutterBottom>
+              <Typography variant="h3" fontWeight="bold" gutterBottom>
                 {pillLabel}
               </Typography>
               <Card variant="outlined">
@@ -60,7 +62,7 @@ const PillModal: FC<Props> = ({ open, onClose, pillId, pillLabel }) => {
                   <Grid2 container spacing={4}>
                     <Grid2 xs={12}>
                       <Typography>
-                        {`(Optional) You can replace this pill with another. You can label it anything, be it true or not.`}
+                        {`(Optional) You can replace this pill with another. You can label it anything, be it truthful or not.`}
                       </Typography>
                     </Grid2>
                     <Grid2 xs={12}>
@@ -68,6 +70,7 @@ const PillModal: FC<Props> = ({ open, onClose, pillId, pillLabel }) => {
                         fullWidth
                         label="Link"
                         placeholder="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+                        color={pillColor}
                       />
                     </Grid2>
                     <Grid2 xs={12}>
@@ -75,6 +78,7 @@ const PillModal: FC<Props> = ({ open, onClose, pillId, pillLabel }) => {
                         fullWidth
                         label="Label"
                         placeholder="Not a Rickroll"
+                        color={pillColor}
                       />
                     </Grid2>
                   </Grid2>
@@ -82,8 +86,9 @@ const PillModal: FC<Props> = ({ open, onClose, pillId, pillLabel }) => {
               </Card>
             </CardContent>
             <CardActions>
-              <Button onClick={onClose}>Back</Button>
-              <Button type="submit">Confirm</Button>
+              <Button type="submit" fullWidth color={pillColor}>
+                Confirm
+              </Button>
             </CardActions>
           </Card>
         </Formik>
