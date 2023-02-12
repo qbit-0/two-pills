@@ -62,7 +62,7 @@ const PillModal: FC<Props> = ({ open, onClose, pillId, pillLabel }) => {
                   <Grid2 container spacing={4}>
                     <Grid2 xs={12}>
                       <Typography>
-                        {`(Optional) You can replace this pill with another. You can label it anything, be it truthful or not.`}
+                        {`(Optional) Replace this pill with another. You can label it anything, be it truthful or not.`}
                       </Typography>
                     </Grid2>
                     <Grid2 xs={12}>
