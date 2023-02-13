@@ -1,4 +1,4 @@
-# Two-Boxes
+# two-pills
 ## How to run on local
 ### Front end
 ```
@@ -11,7 +11,6 @@ will run on http://localhost:5173/
 ```
 cd server
 npm install
-npm run build
 npm run dev
 ```
 will run on http://localhost:8000/
