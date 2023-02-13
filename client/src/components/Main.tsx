@@ -44,7 +44,7 @@ const Main = () => {
           MAKE. YOUR. DECISION.
         </Typography>
 
-        <Grid2 container flexGrow={1} rowSpacing={2}>
+        <Grid2 container flexGrow={1} rowSpacing={2} columnSpacing={4}>
           <Grid2 xs={12} md>
             <Pill pillId={0} />
           </Grid2>
