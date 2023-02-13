@@ -17,7 +17,7 @@ import { ComponentProps, FC } from "react";
 import * as yup from "yup";
 
 const urlRegrex =
-  /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/;
+  /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/;
 
 type Values = { url: string; label: string };
 const initialValues: Values = { url: "", label: "" };
@@ -25,7 +25,7 @@ const pillSchema = yup.object().shape({
   url: yup.string().matches(urlRegrex, "Must be a URL"),
   label: yup
     .string()
-    .when("link", {
+    .when("url", {
       is: (val: string) => val,
       then: (schema) => schema.required("Required if replacing pill"),
     })
