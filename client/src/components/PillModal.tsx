@@ -29,10 +29,13 @@ type Values = { url: string; label: string };
 const initialValues: Values = { url: "", label: "" };
 const pillSchema = yup.object().shape({
   url: yup.string().matches(urlRegrex, "Must be a URL"),
-  label: yup.string().when("link", {
-    is: (val: string) => val,
-    then: (schema) => schema.required("Required if replacing pill"),
-  }),
+  label: yup
+    .string()
+    .when("link", {
+      is: (val: string) => val,
+      then: (schema) => schema.required("Required if replacing pill"),
+    })
+    .max(280, "Label must be less than 280 characters long"),
 });
 
 type Props = {

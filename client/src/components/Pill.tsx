@@ -1,6 +1,12 @@
 import backendInstance from "@/api/backend";
 import PillModal from "@/components/PillModal";
-import { Card, CardActionArea, CardContent, Typography } from "@mui/material";
+import {
+  Box,
+  Card,
+  CardActionArea,
+  CardContent,
+  Typography,
+} from "@mui/material";
 import CardMedia from "@mui/material/CardMedia";
 import { FC, useEffect, useState } from "react";
 
@@ -47,8 +53,20 @@ const Pill: FC<Props> = ({ pillId: pillId }) => {
 
   return (
     <>
-      <Card>
-        <CardActionArea onClick={handlePillClick}>
+      <Card
+        variant="outlined"
+        sx={{ height: "100%", display: "flex", flexDirection: "column" }}
+      >
+        <CardActionArea
+          onClick={handlePillClick}
+          sx={{
+            flexGrow: 1,
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "start",
+            alignItems: "stretch",
+          }}
+        >
           <CardContent
             sx={{ display: "flex", justifyContent: "space-between" }}
           >
@@ -60,7 +78,14 @@ const Pill: FC<Props> = ({ pillId: pillId }) => {
             </Typography>
           </CardContent>
           {/* <CardMedia image={pillImage} style={{ height: 150 }} /> */}
-          <CardContent>
+          <CardContent
+            sx={{
+              flexGrow: 1,
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+            }}
+          >
             <Typography variant="h6" color={pillColor} textAlign="center">
               {pillTitle}
             </Typography>

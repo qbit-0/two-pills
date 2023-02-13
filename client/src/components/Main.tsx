@@ -11,13 +11,17 @@ const Main = () => {
       flexDirection="column"
       pb={6}
     >
-      <Container>
-        <Grid2 container rowSpacing={8} columnSpacing={4}>
-          <Grid2 xs={12}>
-            <Typography variant="h2" textAlign="center" fontWeight="bold">
-              MAKE. YOUR. DECISION.
-            </Typography>
-          </Grid2>
+      <Box
+        component={Container}
+        flexGrow={1}
+        display="flex"
+        flexDirection="column"
+        rowGap={4}
+      >
+        <Typography variant="h2" textAlign="center" fontWeight="bold">
+          MAKE. YOUR. DECISION.
+        </Typography>
+        <Grid2 container flexGrow={1}>
           <Grid2 xs>
             <Pill pillId={0} />
           </Grid2>
@@ -28,7 +32,7 @@ const Main = () => {
             <Pill pillId={1} />
           </Grid2>
         </Grid2>
-      </Container>
+      </Box>
     </Box>
   );
 };
