@@ -4,16 +4,18 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 require("module-alias/register");
+const dotenv_1 = __importDefault(require("dotenv"));
+dotenv_1.default.config();
 const api_1 = __importDefault(require("@/routes/api"));
 const cors_1 = __importDefault(require("cors"));
-const dotenv_1 = __importDefault(require("dotenv"));
 const express_1 = __importDefault(require("express"));
-dotenv_1.default.config();
+const mongo_1 = __importDefault(require("@/models/mongo"));
+(0, mongo_1.default)();
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
 app.use((0, cors_1.default)());
 app.all("/", (req, res, next) => {
-    console.log(req);
+    console.log(req.url, req.params, req.query, req.body);
     next();
 });
 app.get("/", (req, res) => {
