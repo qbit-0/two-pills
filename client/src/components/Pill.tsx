@@ -1,6 +1,12 @@
 import backendInstance from "@/api/backend";
 import PillModal from "@/components/PillModal";
-import { Card, CardActionArea, CardContent, Typography } from "@mui/material";
+import {
+  Box,
+  Card,
+  CardActionArea,
+  CardContent,
+  Typography,
+} from "@mui/material";
 import CardMedia from "@mui/material/CardMedia";
 import { FC, useEffect, useState } from "react";
 
@@ -45,10 +51,31 @@ const Pill: FC<Props> = ({ pillId: pillId }) => {
     updatePill();
   }, []);
 
+  let pillLabelVariant: "h3" | "h4" | "h5";
+  if (pill.label.length > 200) {
+    pillLabelVariant = "h5";
+  } else if (pill.label.length > 100) {
+    pillLabelVariant = "h4";
+  } else {
+    pillLabelVariant = "h3";
+  }
+
   return (
     <>
-      <Card>
-        <CardActionArea onClick={handlePillClick}>
+      <Card
+        variant="outlined"
+        sx={{ height: "100%", display: "flex", flexDirection: "column" }}
+      >
+        <CardActionArea
+          onClick={handlePillClick}
+          sx={{
+            flexGrow: 1,
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "start",
+            alignItems: "stretch",
+          }}
+        >
           <CardContent
             sx={{ display: "flex", justifyContent: "space-between" }}
           >
@@ -60,11 +87,23 @@ const Pill: FC<Props> = ({ pillId: pillId }) => {
             </Typography>
           </CardContent>
           {/* <CardMedia image={pillImage} style={{ height: 150 }} /> */}
-          <CardContent>
+          <CardContent
+            sx={{
+              flexGrow: 1,
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+            }}
+          >
             <Typography variant="h6" color={pillColor} textAlign="center">
               {pillTitle}
             </Typography>
-            <Typography variant="h3" textAlign="center" fontWeight="bold">
+            <Typography
+              variant={pillLabelVariant}
+              textAlign="center"
+              fontWeight="bold"
+              sx={{ wordBreak: "break-word" }}
+            >
               {pill.label}
             </Typography>
           </CardContent>
