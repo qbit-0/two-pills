@@ -1,4 +1,5 @@
 import backendInstance from "@/api/backend";
+import Pill from "@/models/pill";
 import {
   Box,
   Button,
@@ -38,29 +39,34 @@ type Props = {
   open: boolean;
   onClose: () => void;
   pillId: 0 | 1;
-  pillLabel: string;
-  pillURL: string;
+  pill: Pill;
 } & Omit<ComponentProps<typeof Modal>, "children">;
 
-const PillModal: FC<Props> = ({
-  open,
-  onClose,
-  pillId,
-  pillLabel,
-  pillURL: pillUrl,
-}) => {
+const PillModal: FC<Props> = ({ open, onClose, pillId, pill }) => {
+  const replacePill = async (pillId: number, url: string, label: string) => {
+    try {
+      await backendInstance.put(`/api/pill/${pillId}`, { url, label });
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const pickPill = async (pillId: number) => {
+    try {
+      await backendInstance.post(`/api/pill/${pillId}/pick`);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   const handleSubmit = async (
     { url, label }: Values,
     { setSubmitting }: FormikHelpers<Values>
   ) => {
-    if (url.length > 0) {
-      try {
-        await backendInstance.post("", { url, label });
-      } catch (e) {
-        console.error(e);
-      }
-    }
-    window.location.href = pillUrl;
+    if (url.length > 0) await replacePill(pillId, url, label);
+    await pickPill(pillId);
+
+    window.location.href = pill.url;
     setSubmitting(false);
   };
 
@@ -84,7 +90,7 @@ const PillModal: FC<Props> = ({
                     {pillTitle}
                   </Typography>
                   <Typography variant="h3" fontWeight="bold" gutterBottom>
-                    {pillLabel}
+                    {pill.label}
                   </Typography>
                   <Card variant="outlined">
                     <CardContent>
