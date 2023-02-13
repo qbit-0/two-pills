@@ -14,7 +14,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-app.all("/", (req, res, next) => {
+app.use("/", (req, res, next) => {
   console.log(req.url, req.params, req.query, req.body);
   next();
 });
