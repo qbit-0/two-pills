@@ -15,12 +15,14 @@ const Main = () => {
 
   const divider = useLargeLayout ? (
     <Divider orientation={"vertical"} flexItem>
-      <Typography variant="h3">Or</Typography>
+      <Typography variant="h4" fontWeight="thin">
+        Or
+      </Typography>
     </Divider>
   ) : (
     <Box width="100%">
       <Divider orientation="horizontal" flexItem sx={{ width: "100%" }}>
-        <Typography variant="h3">Or</Typography>
+        <Typography variant="h4">Or</Typography>
       </Divider>
     </Box>
   );
@@ -40,7 +42,12 @@ const Main = () => {
         flexDirection="column"
         rowGap={4}
       >
-        <Typography variant="h2" textAlign="center" fontWeight="bold">
+        <Typography
+          variant="h2"
+          component="h3"
+          textAlign="center"
+          fontWeight="bold"
+        >
           Make. Your. Decision.
         </Typography>
 
