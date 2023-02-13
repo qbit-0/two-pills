@@ -1,12 +1,5 @@
 import PillModal from "@/components/PillModal";
-import {
-  Box,
-  Card,
-  CardActionArea,
-  CardContent,
-  Modal,
-  Typography,
-} from "@mui/material";
+import { Card, CardActionArea, CardContent, Typography } from "@mui/material";
 import CardMedia from "@mui/material/CardMedia";
 import { FC, useState } from "react";
 
@@ -34,6 +27,11 @@ const Pill: FC<Props> = ({ pillId: pillId }) => {
 
   const pillLabel = pillId === "red" ? "Not a Rickroll" : "Totally a Rickroll";
 
+  const pillURL =
+    pillId === "red"
+      ? "https://picsum.photos/200/200"
+      : "https://www.google.com/";
+
   return (
     <>
       <Card>
@@ -52,6 +50,7 @@ const Pill: FC<Props> = ({ pillId: pillId }) => {
       <PillModal
         pillId={pillId}
         pillLabel={pillLabel}
+        pillURL={pillURL}
         open={open}
         onClose={handleClose}
       />
