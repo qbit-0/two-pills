@@ -102,6 +102,7 @@ const Pill: FC<Props> = ({ pillId: pillId }) => {
               variant={pillLabelVariant}
               textAlign="center"
               fontWeight="bold"
+              component="h4"
               sx={{ wordBreak: "break-word" }}
             >
               {pill.label}
