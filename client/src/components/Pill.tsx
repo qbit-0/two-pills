@@ -43,7 +43,7 @@ const Pill: FC<Props> = ({ pillId: pillId }) => {
     };
 
     updatePill();
-  });
+  }, []);
 
   return (
     <>
