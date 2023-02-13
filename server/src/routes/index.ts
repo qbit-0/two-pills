@@ -1,7 +1,7 @@
 import { Router } from "express";
-import boxesRouter from "@/routes/boxes";
+import pillsRouter from "@/routes/pill";
 const router = Router();
 
-router.use("/boxes", boxesRouter);
+router.use("/pill", pillsRouter);
 
 export default router;

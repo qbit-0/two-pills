@@ -1,3 +1,4 @@
+import backendInstance from "@/api/backend";
 import {
   Box,
   Button,
@@ -20,13 +21,13 @@ const style = {
   transform: "translate(-50%, -50%)",
 };
 
-const httpRegrex =
+const urlRegrex =
   /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/;
 
 type Values = { url: string; label: string };
 const initialValues: Values = { url: "", label: "" };
 const pillSchema = yup.object().shape({
-  url: yup.string().matches(httpRegrex, "Must be a url"),
+  url: yup.string().matches(urlRegrex, "Must be a URL"),
   label: yup.string().when("link", {
     is: (val: string) => val,
     then: (schema) => schema.required("Required if replacing pill"),
@@ -36,7 +37,7 @@ const pillSchema = yup.object().shape({
 type Props = {
   open: boolean;
   onClose: () => void;
-  pillId: "red" | "blue";
+  pillId: 0 | 1;
   pillLabel: string;
   pillURL: string;
 } & Omit<ComponentProps<typeof Modal>, "children">;
@@ -48,17 +49,24 @@ const PillModal: FC<Props> = ({
   pillLabel,
   pillURL: pillUrl,
 }) => {
-  const handleSubmit = (
-    values: Values,
+  const handleSubmit = async (
+    { url, label }: Values,
     { setSubmitting }: FormikHelpers<Values>
   ) => {
+    if (url.length > 0) {
+      try {
+        await backendInstance.post("", { url, label });
+      } catch (e) {
+        console.error(e);
+      }
+    }
     window.location.href = pillUrl;
     setSubmitting(false);
   };
 
-  const pillColor = pillId === "red" ? "primary" : "secondary";
+  const pillColor = pillId === 0 ? "primary" : "secondary";
 
-  const pillTitle = pillId === "red" ? "The Red Pill" : "The Blue Pill";
+  const pillTitle = pillId === 1 ? "The Red Pill" : "The Blue Pill";
 
   return (
     <Modal open={open} onClose={onClose}>
