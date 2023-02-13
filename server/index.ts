@@ -1,11 +1,13 @@
 import "module-alias/register";
+import dotenv from "dotenv";
+dotenv.config();
 
 import apiRouter from "@/routes/api";
 import cors from "cors";
-import dotenv from "dotenv";
 import express from "express";
+import connectMongoose from "@/models/mongo";
 
-dotenv.config();
+connectMongoose();
 
 const app = express();
 
@@ -13,7 +15,7 @@ app.use(express.json());
 app.use(cors());
 
 app.all("/", (req, res, next) => {
-  console.log(req);
+  console.log(req.url, req.params, req.query, req.body);
   next();
 });
 
