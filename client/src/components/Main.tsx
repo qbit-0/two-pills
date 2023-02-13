@@ -19,13 +19,13 @@ const Main = () => {
             </Typography>
           </Grid2>
           <Grid2 xs>
-            <Pill pillId="red" />
+            <Pill pillId={0} />
           </Grid2>
           <Divider orientation="vertical" flexItem>
             <Typography variant="h3">Or</Typography>
           </Divider>
           <Grid2 xs>
-            <Pill pillId="blue" />
+            <Pill pillId={1} />
           </Grid2>
         </Grid2>
       </Container>

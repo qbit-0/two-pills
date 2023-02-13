@@ -13,10 +13,10 @@ const app = (0, express_1.default)();
 app.use(express_1.default.json());
 app.use((0, cors_1.default)());
 app.get("/", (req, res) => {
-    return res.status(200).send("<h1>Hello world from backend!</h1>");
+    return res.send("<h1>Backend for Two Pills App</h1>");
 });
 app.use("/api", routes_1.default);
 const port = process.env.PORT || 8000;
 app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`);
+    console.log(`App listening on port ${port}`);
 });

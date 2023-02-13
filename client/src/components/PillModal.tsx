@@ -1,3 +1,4 @@
+import backendInstance from "@/api/backend";
 import {
   Box,
   Button,
@@ -9,9 +10,9 @@ import {
 } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
-import { Formik } from "formik";
+import { Form, Formik, FormikHelpers } from "formik";
 import { ComponentProps, FC } from "react";
-import * as Yup from "yup";
+import * as yup from "yup";
 
 const style = {
   position: "absolute",
@@ -20,26 +21,52 @@ const style = {
   transform: "translate(-50%, -50%)",
 };
 
-type Values = { link: string; label: string };
-const initialValues: Values = { link: "", label: "" };
-const pillSchema = Yup.object().shape({
-  link: Yup.string(),
-  label: Yup.string(),
+const urlRegrex =
+  /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/;
+
+type Values = { url: string; label: string };
+const initialValues: Values = { url: "", label: "" };
+const pillSchema = yup.object().shape({
+  url: yup.string().matches(urlRegrex, "Must be a URL"),
+  label: yup.string().when("link", {
+    is: (val: string) => val,
+    then: (schema) => schema.required("Required if replacing pill"),
+  }),
 });
 
 type Props = {
   open: boolean;
   onClose: () => void;
-  pillId: "red" | "blue";
+  pillId: 0 | 1;
   pillLabel: string;
+  pillURL: string;
 } & Omit<ComponentProps<typeof Modal>, "children">;
 
-const PillModal: FC<Props> = ({ open, onClose, pillId, pillLabel }) => {
-  const handleSubmit = () => {};
+const PillModal: FC<Props> = ({
+  open,
+  onClose,
+  pillId,
+  pillLabel,
+  pillURL: pillUrl,
+}) => {
+  const handleSubmit = async (
+    { url, label }: Values,
+    { setSubmitting }: FormikHelpers<Values>
+  ) => {
+    if (url.length > 0) {
+      try {
+        await backendInstance.post("", { url, label });
+      } catch (e) {
+        console.error(e);
+      }
+    }
+    window.location.href = pillUrl;
+    setSubmitting(false);
+  };
 
-  const pillColor = pillId === "red" ? "primary" : "secondary";
+  const pillColor = pillId === 0 ? "primary" : "secondary";
 
-  const pillTitle = pillId === "red" ? "The Red Pill" : "The Blue Pill";
+  const pillTitle = pillId === 1 ? "The Red Pill" : "The Blue Pill";
 
   return (
     <Modal open={open} onClose={onClose}>
@@ -49,48 +76,69 @@ const PillModal: FC<Props> = ({ open, onClose, pillId, pillLabel }) => {
           validationSchema={pillSchema}
           onSubmit={handleSubmit}
         >
-          <Card>
-            <CardContent>
-              <Typography variant="h5" color={pillColor}>
-                {pillTitle}
-              </Typography>
-              <Typography variant="h3" fontWeight="bold" gutterBottom>
-                {pillLabel}
-              </Typography>
-              <Card variant="outlined">
+          {({ values, errors, isValid, handleChange, isSubmitting }) => (
+            <Form>
+              <Card>
                 <CardContent>
-                  <Grid2 container spacing={4}>
-                    <Grid2 xs={12}>
-                      <Typography>
-                        {`(Optional) You can replace this pill with another. You can label it anything, be it truthful or not.`}
-                      </Typography>
-                    </Grid2>
-                    <Grid2 xs={12}>
-                      <TextField
-                        fullWidth
-                        label="Link"
-                        placeholder="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-                        color={pillColor}
-                      />
-                    </Grid2>
-                    <Grid2 xs={12}>
-                      <TextField
-                        fullWidth
-                        label="Label"
-                        placeholder="Not a Rickroll"
-                        color={pillColor}
-                      />
-                    </Grid2>
-                  </Grid2>
+                  <Typography variant="h5" color={pillColor}>
+                    {pillTitle}
+                  </Typography>
+                  <Typography variant="h3" fontWeight="bold" gutterBottom>
+                    {pillLabel}
+                  </Typography>
+                  <Card variant="outlined">
+                    <CardContent>
+                      <Grid2 container spacing={4}>
+                        <Grid2 xs={12}>
+                          <Typography>
+                            {`(Optional) Replace this pill with another. You can label it anything, be it truthful or not.`}
+                          </Typography>
+                        </Grid2>
+                        <Grid2 xs={12}>
+                          <TextField
+                            fullWidth
+                            label="URL"
+                            placeholder="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+                            color={pillColor}
+                            name="url"
+                            value={values.url}
+                            onChange={handleChange}
+                            error={!!errors.url}
+                            helperText={errors.url}
+                          />
+                        </Grid2>
+                        <Grid2 xs={12}>
+                          <TextField
+                            fullWidth
+                            label="Label"
+                            placeholder="Not a Rickroll"
+                            color={pillColor}
+                            name="label"
+                            value={values.label}
+                            onChange={handleChange}
+                            error={!!errors.label}
+                            helperText={errors.label}
+                          />
+                        </Grid2>
+                      </Grid2>
+                    </CardContent>
+                  </Card>
                 </CardContent>
+                <CardActions>
+                  <Button
+                    type="submit"
+                    disabled={isSubmitting || !isValid}
+                    fullWidth
+                    color={pillColor}
+                  >
+                    {values.label || values.url
+                      ? "Replace Pill and Down the Rabbithole"
+                      : "Down the Rabbithole"}
+                  </Button>
+                </CardActions>
               </Card>
-            </CardContent>
-            <CardActions>
-              <Button type="submit" fullWidth color={pillColor}>
-                Confirm
-              </Button>
-            </CardActions>
-          </Card>
+            </Form>
+          )}
         </Formik>
       </Box>
     </Modal>
