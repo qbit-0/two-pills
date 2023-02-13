@@ -41,7 +41,7 @@ const Main = () => {
         rowGap={4}
       >
         <Typography variant="h2" textAlign="center" fontWeight="bold">
-          MAKE. YOUR. DECISION.
+          Make. Your. Decision.
         </Typography>
 
         <Grid2 container flexGrow={1} rowSpacing={2} columnSpacing={4}>
