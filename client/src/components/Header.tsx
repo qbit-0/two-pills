@@ -7,7 +7,7 @@ const Header = () => {
   return (
     <Box py={8}>
       <Container>
-        <Typography variant="h1" fontWeight="bold">
+        <Typography variant="h1" component="h1" fontWeight="bold">
           Two pills,{" "}
           <span style={{ color: theme.palette.primary.main }}>red</span> and{" "}
           <span style={{ color: theme.palette.secondary.main }}>blue</span>.
