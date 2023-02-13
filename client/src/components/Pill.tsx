@@ -51,6 +51,15 @@ const Pill: FC<Props> = ({ pillId: pillId }) => {
     updatePill();
   }, []);
 
+  let pillLabelVariant: "h3" | "h4" | "h5";
+  if (pill.label.length > 200) {
+    pillLabelVariant = "h5";
+  } else if (pill.label.length > 100) {
+    pillLabelVariant = "h4";
+  } else {
+    pillLabelVariant = "h3";
+  }
+
   return (
     <>
       <Card
@@ -89,7 +98,12 @@ const Pill: FC<Props> = ({ pillId: pillId }) => {
             <Typography variant="h6" color={pillColor} textAlign="center">
               {pillTitle}
             </Typography>
-            <Typography variant="h3" textAlign="center" fontWeight="bold">
+            <Typography
+              variant={pillLabelVariant}
+              textAlign="center"
+              fontWeight="bold"
+              sx={{ wordBreak: "break-word" }}
+            >
               {pill.label}
             </Typography>
           </CardContent>
