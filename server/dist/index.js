@@ -14,8 +14,8 @@ const mongo_1 = __importDefault(require("@/models/mongo"));
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
 app.use((0, cors_1.default)());
-app.use("/", (req, res, next) => {
-    console.log(req.url, req.params, req.query, req.body);
+app.use("/", (req, _, next) => {
+    console.log(req.url, req.query, req.body);
     next();
 });
 app.get("/", (req, res) => {
