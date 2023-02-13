@@ -1,17 +1,14 @@
 import backendInstance from "@/api/backend";
 import Pill from "@/models/pill";
 import {
-  Box,
   Button,
   Card,
   CardActions,
   CardContent,
   Container,
-  Fade,
   Modal,
   Slide,
   TextField,
-  Zoom,
 } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
@@ -72,7 +69,7 @@ const PillModal: FC<Props> = ({ open, onClose, pillId, pill }) => {
 
   const pillColor = pillId === 0 ? "primary" : "secondary";
 
-  const pillTitle = pillId === 1 ? "The Red Pill" : "The Blue Pill";
+  const pillTitle = pillId === 0 ? "The Red Pill" : "The Blue Pill";
 
   const slideDirection = pillId === 0 ? "right" : "left";
 
