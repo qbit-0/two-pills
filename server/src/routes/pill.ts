@@ -16,6 +16,8 @@ router.put("/:pillId", async (req, res) => {
 
   if (!url.match(urlRegrex))
     return res.status(400).send({ error: "Url invalid" });
+  if (label.length > 280)
+    return res.status(400).send({ error: "Label too long" });
 
   const pill = await Pill.findOne({ pillId });
   if (!pill) return res.status(400).send({ error: "Pill not found" });
