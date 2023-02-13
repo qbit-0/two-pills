@@ -1,20 +1,24 @@
-import { useState } from "react";
-import { Box, Button, Container, Typography } from "@mui/material";
+import Footer from "@/components/Footer";
+import Header from "@/components/Header";
+import Main from "@/components/Main";
+import { Box } from "@mui/material";
 
-function App() {
+const App = () => {
   return (
-    <Box>
-      <Container>
-        <Typography variant="h4">
-          Two boxes in red and blue. <br />
-          Boxes were crafted by previous players. <br />
-          Each box will take you to a link. <br />
-          You may pick one to visit. <br />
-          The other will remain a mystery forever. <br />
-          Chose carefully...
-        </Typography>
-      </Container>
+    <Box display="flex" flexDirection="column" minHeight="100vh">
+      {/* <AppBar position="static">
+        <Toolbar>
+          <IconButton>
+            <LightMode />
+            <DarkMode />
+          </IconButton>
+        </Toolbar>
+      </AppBar> */}
+      <Header />
+      <Main />
+      <Footer />
     </Box>
   );
-}
+};
+
 export default App;
