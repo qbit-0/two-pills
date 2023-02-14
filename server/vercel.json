@@ -6,7 +6,7 @@
       "config": { "includeFiles": ["dist/**"] }
     }
   ],
-  "rewries": [
+  "rewrites": [
     {
       "source": "/(.*)",
       "destination": "/dist"
