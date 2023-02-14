@@ -17,14 +17,7 @@ app.use(cors());
 app.use(morgan("combined"));
 
 app.get("/", (req, res) => {
-  switch (process.env.NODE_ENV) {
-    case "local":
-      return res.redirect(process.env.LOCAL_FRONTEND as string);
-    case "production":
-      return res.redirect(process.env.PRODUCTION_FRONTEND as string);
-    default:
-      throw new Error(`Invalid NODE_ENV, ${process.env.NODE_ENV}`);
-  }
+  return res.redirect(301, process.env.PRODUCTION_FRONTEND as string);
 });
 
 app.use("/api", apiRouter);

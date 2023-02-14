@@ -17,14 +17,7 @@ app.use(express_1.default.json());
 app.use((0, cors_1.default)());
 app.use((0, morgan_1.default)("combined"));
 app.get("/", (req, res) => {
-    switch (process.env.NODE_ENV) {
-        case "local":
-            return res.redirect(process.env.LOCAL_FRONTEND);
-        case "production":
-            return res.redirect(process.env.PRODUCTION_FRONTEND);
-        default:
-            throw new Error(`Invalid NODE_ENV, ${process.env.NODE_ENV}`);
-    }
+    return res.redirect(301, process.env.PRODUCTION_FRONTEND);
 });
 app.use("/api", api_1.default);
 if (process.env.NODE_ENV === "local") {
