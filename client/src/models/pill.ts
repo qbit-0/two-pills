@@ -1,4 +1,5 @@
 type Pill = {
+  pillId: number;
   url: string;
   label: string;
   pickCount: number;
