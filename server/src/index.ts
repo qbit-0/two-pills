@@ -12,10 +12,15 @@ connectMongoose();
 const app = express();
 
 app.use(express.json());
-app.use(cors());
+
+app.use(
+  cors({
+    origin: ["http://127.0.0.1:5173/", "https://two-pills.duypham.tech/"],
+  })
+);
 
 app.use("/", (req, _, next) => {
-  console.log(req.url, req.query, req.body);
+  console.log(req.ip, req.url, req.query, req.body);
   next();
 });
 
