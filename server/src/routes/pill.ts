@@ -1,4 +1,4 @@
-import Pill from "../models/pill";
+import Pill from "@/models/pill";
 import { Router } from "express";
 
 const router = Router();
