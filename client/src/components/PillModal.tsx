@@ -42,7 +42,7 @@ type Props = {
 const PillModal: FC<Props> = ({ open, onClose, pillId, pill }) => {
   const replacePill = async (pillId: number, url: string, label: string) => {
     try {
-      await backendInstance.put(`/api/pill/${pillId}`, { url, label });
+      await backendInstance.post(`/api/pill/${pillId}`, { url, label });
     } catch (err) {
       console.error(err);
     }
