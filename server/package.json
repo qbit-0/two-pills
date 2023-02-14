@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "rimraf dist && tsc",
-    "start": "set NODE_ENV=production && nodemon index.ts",
+    "start": "set NODE_ENV=production && node dist/index.js",
     "dev": "set NODE_ENV=local&& concurrently \"npx tsc --watch\" \"nodemon -q dist/index.js\"",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "npx eslint . --ext .js,.ts --fix --ignore-path .gitignore || true",
