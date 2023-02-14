@@ -15,13 +15,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const pill_1 = __importDefault(require("../models/pill"));
 const express_1 = require("express");
 const router = (0, express_1.Router)();
-const urlRegrex = /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/;
+const urlRegrex = /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/;
 router.get("/:pillId", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const pillId = Number(req.params.pillId);
     const pill = yield pill_1.default.findOne({ pillId });
     if (!pill)
         return res.status(400).send({ error: "Pill not found" });
-    console.log("sending pill", pill);
     return res.json(pill);
 }));
 router.post("/:pillId", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
