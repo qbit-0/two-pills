@@ -10,19 +10,17 @@ const api_1 = __importDefault(require("./routes/api"));
 const cors_1 = __importDefault(require("cors"));
 const express_1 = __importDefault(require("express"));
 const mongo_1 = __importDefault(require("./models/mongo"));
+const morgan_1 = __importDefault(require("morgan"));
 (0, mongo_1.default)();
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
 app.use((0, cors_1.default)());
-app.use("/", (req, _, next) => {
-    console.log(req.ip, req.url, req.method, req.query, req.body);
-    next();
-});
+app.use((0, morgan_1.default)("combined"));
 app.get("/", (req, res) => {
-    return res.send("<h1>Backend for Two Pills App</h1>");
+    return res.status(200).send("<h1>Backend for Two Pills App</h1>");
 });
 app.use("/api", api_1.default);
-if (process.env.NODE_ENV !== "local") {
+if (process.env.NODE_ENV === "local") {
     const port = process.env.PORT || 8000;
     app.listen(port, () => {
         console.log(`App listening on port ${port}`);
