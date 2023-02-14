@@ -1,13 +1,6 @@
 import backendInstance from "@/api/backend";
 import PillModal from "@/components/PillModal";
-import {
-  Box,
-  Card,
-  CardActionArea,
-  CardContent,
-  Typography,
-} from "@mui/material";
-import CardMedia from "@mui/material/CardMedia";
+import { Card, CardActionArea, CardContent, Typography } from "@mui/material";
 import { FC, useEffect, useState } from "react";
 
 type Props = { pillId: 0 | 1 };
@@ -15,6 +8,7 @@ type Props = { pillId: 0 | 1 };
 const Pill: FC<Props> = ({ pillId: pillId }) => {
   const [open, setOpen] = useState(false);
   const [pill, setPill] = useState({
+    pillId: 0,
     url: "",
     label: "",
     replaceCount: 0,
