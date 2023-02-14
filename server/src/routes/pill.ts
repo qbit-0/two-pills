@@ -21,7 +21,8 @@ router.put("/:pillId", async (req, res) => {
 
   const pill = await Pill.findOne({ pillId });
   if (!pill) return res.status(400).send({ error: "Pill not found" });
-  await pill.update({ url, label, replaceCount: pill.replaceCount + 1 });
+
+  await pill.updateOne({ url, label, replaceCount: pill.replaceCount + 1 });
 
   return res.send();
 });
@@ -30,6 +31,8 @@ router.get("/:pillId", async (req, res) => {
   const pillId = Number(req.params.pillId);
   const pill = await Pill.findOne({ pillId });
   if (!pill) return res.status(400).send({ error: "Pill not found" });
+
+  console.log("sending pill", pill);
   return res.json(pill);
 });
 
@@ -37,7 +40,7 @@ router.post("/:pillId/pick", async (req, res) => {
   const pillId = Number(req.params.pillId);
   const pill = await Pill.findOne({ pillId });
   if (!pill) return res.status(400).send({ error: "Pill not found" });
-  await pill.update({ pickCount: pill.pickCount + 1 });
+  await pill.updateOne({ pickCount: pill.pickCount + 1 });
   return res.send();
 });
 

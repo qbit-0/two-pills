@@ -31,7 +31,7 @@ router.put("/:pillId", (req, res) => __awaiter(void 0, void 0, void 0, function*
     const pill = yield pill_1.default.findOne({ pillId });
     if (!pill)
         return res.status(400).send({ error: "Pill not found" });
-    yield pill.update({ url, label, replaceCount: pill.replaceCount + 1 });
+    yield pill.updateOne({ url, label, replaceCount: pill.replaceCount + 1 });
     return res.send();
 }));
 router.get("/:pillId", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -39,6 +39,7 @@ router.get("/:pillId", (req, res) => __awaiter(void 0, void 0, void 0, function*
     const pill = yield pill_1.default.findOne({ pillId });
     if (!pill)
         return res.status(400).send({ error: "Pill not found" });
+    console.log("sending pill", pill);
     return res.json(pill);
 }));
 router.post("/:pillId/pick", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -46,7 +47,7 @@ router.post("/:pillId/pick", (req, res) => __awaiter(void 0, void 0, void 0, fun
     const pill = yield pill_1.default.findOne({ pillId });
     if (!pill)
         return res.status(400).send({ error: "Pill not found" });
-    yield pill.update({ pickCount: pill.pickCount + 1 });
+    yield pill.updateOne({ pickCount: pill.pickCount + 1 });
     return res.send();
 }));
 exports.default = router;
