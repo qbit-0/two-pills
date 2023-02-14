@@ -14,18 +14,19 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importDefault(require("mongoose"));
 const connectMongoose = () => __awaiter(void 0, void 0, void 0, function* () {
-    if (process.env.NODE_ENV === "local") {
-        console.log("Connecting to local mongodb.");
-        yield mongoose_1.default.connect(process.env.LOCAL_MONGO_DB);
-        console.log("Connected to local mongodb.");
-    }
-    else if (process.env.NODE_ENV === "production") {
-        console.log("Connecting to production mongodb.");
-        yield mongoose_1.default.connect(process.env.PRODUCTION_MONGO_DB);
-        console.log("Connected to production mongodb.");
-    }
-    else {
-        throw new Error(`Invalid NODE_ENV, ${process.env.NODE_ENV}`);
+    switch (process.env.NODE_ENV) {
+        case "local":
+            console.log("Connecting to local mongodb.");
+            yield mongoose_1.default.connect(process.env.LOCAL_MONGO_DB);
+            console.log("Connected to local mongodb.");
+            break;
+        case "production":
+            console.log("Connecting to production mongodb.");
+            yield mongoose_1.default.connect(process.env.PRODUCTION_MONGO_DB);
+            console.log("Connected to production mongodb.");
+            break;
+        default:
+            throw new Error(`Invalid NODE_ENV, ${process.env.NODE_ENV}`);
     }
 });
 exports.default = connectMongoose;

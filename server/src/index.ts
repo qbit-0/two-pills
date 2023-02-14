@@ -17,7 +17,14 @@ app.use(cors());
 app.use(morgan("combined"));
 
 app.get("/", (req, res) => {
-  return res.status(200).send("<h1>Backend for Two Pills App</h1>");
+  switch (process.env.NODE_ENV) {
+    case "local":
+      return res.redirect(process.env.LOCAL_FRONTEND as string);
+    case "production":
+      return res.redirect(process.env.PRODUCTION_FRONTEND as string);
+    default:
+      throw new Error(`Invalid NODE_ENV, ${process.env.NODE_ENV}`);
+  }
 });
 
 app.use("/api", apiRouter);
