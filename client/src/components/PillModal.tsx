@@ -63,7 +63,7 @@ const PillModal: FC<Props> = ({ open, onClose, pillId, pill }) => {
     if (url.length > 0) await replacePill(pillId, url, label);
     await pickPill(pillId);
 
-    // window.location.href = pill.url;
+    window.location.href = pill.url;
     setSubmitting(false);
   };
 
