@@ -17,7 +17,7 @@ import { ComponentProps, FC } from "react";
 import * as yup from "yup";
 
 const urlRegrex =
-  /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/;
+  /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/;
 
 type Values = { url: string; label: string };
 const initialValues: Values = { url: "", label: "" };
@@ -63,7 +63,7 @@ const PillModal: FC<Props> = ({ open, onClose, pillId, pill }) => {
     if (url.length > 0) await replacePill(pillId, url, label);
     await pickPill(pillId);
 
-    window.location.href = pill.url;
+    window.location.replace(pill.url);
     setSubmitting(false);
   };
 
