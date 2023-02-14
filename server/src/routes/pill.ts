@@ -4,14 +4,13 @@ import { Router } from "express";
 const router = Router();
 
 const urlRegrex =
-  /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/;
+  /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/;
 
 router.get("/:pillId", async (req, res) => {
   const pillId = Number(req.params.pillId);
   const pill = await Pill.findOne({ pillId });
   if (!pill) return res.status(400).send({ error: "Pill not found" });
 
-  console.log("sending pill", pill);
   return res.json(pill);
 });
 
