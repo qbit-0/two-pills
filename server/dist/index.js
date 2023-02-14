@@ -22,8 +22,10 @@ app.get("/", (req, res) => {
     return res.send("<h1>Backend for Two Pills App</h1>");
 });
 app.use("/api", api_1.default);
-const port = process.env.PORT || 8000;
-app.listen(port, () => {
-    console.log(`App listening on port ${port}`);
-});
+if (process.env.NODE_ENV !== "local") {
+    const port = process.env.PORT || 8000;
+    app.listen(port, () => {
+        console.log(`App listening on port ${port}`);
+    });
+}
 exports.default = app;

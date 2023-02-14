@@ -26,10 +26,11 @@ app.get("/", (req, res) => {
 
 app.use("/api", apiRouter);
 
-const port = process.env.PORT || 8000;
-
-app.listen(port, () => {
-  console.log(`App listening on port ${port}`);
-});
+if (process.env.NODE_ENV !== "local") {
+  const port = process.env.PORT || 8000;
+  app.listen(port, () => {
+    console.log(`App listening on port ${port}`);
+  });
+}
 
 export default app;
