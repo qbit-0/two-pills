@@ -2,7 +2,7 @@
   "name": "server",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/index.js",
+  "main": ".",
   "scripts": {
     "build": "npx tsc",
     "start": "set NODE_ENV=production&& node dist/index.js",
