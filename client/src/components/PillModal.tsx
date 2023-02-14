@@ -22,7 +22,9 @@ const urlRegrex =
 type Values = { url: string; label: string };
 const initialValues: Values = { url: "", label: "" };
 const pillSchema = yup.object().shape({
-  url: yup.string().matches(urlRegrex, "Must be a URL"),
+  url: yup
+    .string()
+    .matches(urlRegrex, "Must be a URL that includes the http/https"),
   label: yup
     .string()
     .when("url", {
