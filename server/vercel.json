@@ -6,10 +6,10 @@
       "config": { "includeFiles": ["dist/**"] }
     }
   ],
-  "rewrites": [
+  "routes": [
     {
       "source": "/(.*)",
-      "destination": "/dist"
+      "destination": "dist/index.js"
     }
   ]
 }
