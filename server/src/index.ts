@@ -2,10 +2,10 @@ import "module-alias/register";
 import dotenv from "dotenv";
 dotenv.config();
 
-import apiRouter from "@/routes/api";
+import apiRouter from "./routes/api";
 import cors from "cors";
 import express from "express";
-import connectMongoose from "@/models/mongo";
+import connectMongoose from "./models/mongo";
 
 connectMongoose();
 
