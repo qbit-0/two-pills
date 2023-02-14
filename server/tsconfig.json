@@ -14,5 +14,5 @@
       "@/*": ["*"]
     }
   },
-  "exclude": ["dist"]
+  "exclude": ["client", "dist", "node_modules"]
 }
